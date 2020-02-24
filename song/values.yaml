@@ -10,8 +10,8 @@ image:
   pullPolicy: IfNotPresent
 
 backupImage:
-  repository: overture/song-postgres-backup-s3
-  tag: 0.1.6
+  repository: overture/postgres-s3-backup
+  tag: 1.0.0
   pullPolicy: IfNotPresent
 
 nameOverride: ""
@@ -77,8 +77,12 @@ postgres:
 
 backup:
   enabled: false
-  schedule: "1 * * * *"
-  dbName: song
-  awsAccessKey: #
-  awsSecretKey: #
-  endpointURL: "https://object.local:9080"
+  # for schedule value, refer to http://godoc.org/github.com/robfig/cron#hdr-Predefined_schedules
+  schedule: "@daily"
+  s3:
+    accessKey: #
+    secretKey: #
+    bucketName: song-backups
+    region: us-east-2
+    s4v4: "yes"
+    endpointUrl: https://example.org
