@@ -67,4 +67,4 @@ podSecurityContext:
 rbac:
   create:
     # for vault kubernetes integration
-    tokenReview: true
+    tokenReview: false
